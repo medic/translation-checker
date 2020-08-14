@@ -25,6 +25,14 @@ describe('checkTranslations', () => {
     ]);
   });
 
+  it('when right translations with operators provided no error expected', async () => {
+    const fileNames = await checkTranslations(`${data}/right-translations-placeholders-with-operators`);
+    expect(fileNames).to.be.an('array').to.include.all.members([
+      'messages-en.properties',
+      'messages-es.properties'
+    ]);
+  });
+
   it('when wrong messageformat translations error expected', async () => {
     try {
       await checkTranslations(`${data}/contains-messageformat-wrong`);
@@ -40,6 +48,13 @@ describe('checkTranslations', () => {
       expect(e.errors[0].error).to.be.eq('wrong-messageformat');
       expect(e.errors[0].lang).to.be.eq('en');
     }
+  });
+
+  it('when wrong messageformat but check disabled no error expected', async () => {
+    await checkTranslations(
+      `${data}/contains-messageformat-wrong`,
+      {checkMessageformat: false}
+    );
   });
 
   it('when wrong messageformat translations in selected lang error expected', async () => {
@@ -80,6 +95,13 @@ describe('checkTranslations', () => {
     }
   });
 
+  it('when empty translation but check disabled no error expected', async () => {
+    await checkTranslations(
+      `${data}/contains-empty-messages`,
+      {checkEmpties: false}
+    );
+  });
+
   it('when placeholder found in translation but not in template error expected', async () => {
     try {
       await checkTranslations(`${data}/contains-wrong-placeholder`);
@@ -108,6 +130,13 @@ describe('checkTranslations', () => {
         key: 'hello'
       });
     }
+  });
+
+  it('when missed placeholder but checkPlaceholders is false no errors expected', async () => {
+    await checkTranslations(
+      `${data}/contains-missed-placeholder`,
+      {checkPlaceholders: false}
+    );
   });
 
   it('multiple errors are all captured in error raised', async () => {

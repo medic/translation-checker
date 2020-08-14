@@ -112,3 +112,49 @@ The mustache placeholder check works as following:
    `records.total = {{max}}` (or `records.total = {{count}} {{max}}`)
 
 Check the JSDoc of the source code to see more options.
+
+### Messageformat check
+
+"Messageformat" check are also performed by default, you can
+disable it with `options.checkMessageformat = false`.
+
+A common error is by mistake translate the messageformat
+keywords when using online translator tools, eg. this
+translation that is OK in English:
+
+```properties
+n.month = {MONTHS, plural, one{1 month} other{\# months}}
+```
+
+Wrong translated to Spanish:
+
+```properties
+n.month = {MONTHS, plural, uno{1 mes} otros{\# meses}}
+```
+
+Will raise an error with a the message:
+
+```
+Invalid key `uno` for argument `MONTHS`. Valid plural keys for this locale are `one`,
+`other`, and explicit keys like `=0`
+```
+
+The right translations is:
+
+```properties
+n.month = {MONTHS, plural, one{1 mes} other{\# meses}}
+```
+
+### Empty message checks
+
+Validations fail if a key is found like this:
+
+```properties
+n.month = 
+```
+
+But some times empty keys are acceptable because
+the software that use the translations fallback
+to the default language, so to disable empties
+check set `options.checkEmpties` to `false`
+(default is `true`).
