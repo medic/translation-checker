@@ -60,9 +60,9 @@ describe('checkTranslations', () => {
   it('when wrong messageformat translations in selected lang error expected', async () => {
     try {
       await checkTranslations(
-          `${data}/contains-messageformat-wrong`,
-      { languages: ['en'] }
-        );
+        `${data}/contains-messageformat-wrong`,
+        { languages: ['en'] }
+      );
     } catch (e) {
       expect((e.errors || []).length).to.be.eq(1);
       expect(e.errors[0]).to.deep.include({
@@ -150,7 +150,8 @@ describe('checkTranslations', () => {
           'lang': 'en',
           'error': 'wrong-messageformat',
           'key': 'n.month2',
-          'message': 'Cannot compile \'en\' translation n.month2 = \'{MONTHS, plural one{1 month} other{# months}}\' : Expected "," but "o" found.'
+          'message': 'Cannot compile \'en\' translation n.month2 = ' +
+                     '\'{MONTHS, plural one{1 month} other{# months}}\' : Expected "," but "o" found.'
         },
         {
           'lang': 'es',
@@ -162,13 +163,16 @@ describe('checkTranslations', () => {
           'lang': 'es',
           'error': 'wrong-messageformat',
           'key': 'n.month2',
-          'message': 'Cannot compile \'es\' translation n.month2 = \'{MONTHS, plural, one{1 month} other{# months}\' : Expected "=", "}", or identifier but end of input found.'
+          'message': 'Cannot compile \'es\' translation n.month2 = ' +
+                     '\'{MONTHS, plural, one{1 month} other{# months}\' : Expected "=", "}", ' +
+                     'or identifier but end of input found.'
         },
         {
           'lang': 'es',
           'error': 'wrong-placeholder',
           'key': 'some.wrong.placeholder1',
-          'message': 'Cannot compile \'es\' translation with key \'some.wrong.placeholder1\' has placeholders that do not match any in the base translation provided'
+          'message': 'Cannot compile \'es\' translation with key \'some.wrong.placeholder1\' ' +
+                     'has placeholders that do not match any in the base translation provided'
         }
       ]);
     }

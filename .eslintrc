@@ -1,28 +1,11 @@
 {
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "extends": ["@medic/eslint-config"],
+  "plugins": ["json"],
   "env": {
     "es6": true,
     "node": true
-  },
-  "extends": "eslint:recommended",
-  "parserOptions": {
-    "ecmaVersion": 8
-  },
-  "rules": {
-    "eqeqeq": "error",
-    "no-bitwise": "error",
-    "no-buffer-constructor": "error",
-    "no-caller": "error",
-    "no-console": "error",
-    "semi": [
-      "error",
-      "always"
-    ],
-    "quotes": [
-      "error",
-      "single",
-      {
-        "allowTemplateLiterals": true
-      }
-    ]
   }
 }
