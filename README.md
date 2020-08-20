@@ -13,7 +13,10 @@ Node 8.10+ required. Install with:
 Here is how you can use it:
 
 ```js
-const { checkTranslations, TranslationException } = require('translation-checker');
+const {
+  checkTranslations,
+  TranslationException
+} = require('@medic/translation-checker');
 
 const dir = `${somePath}/translations`;
 let fileNames;
