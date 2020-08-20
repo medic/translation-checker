@@ -108,6 +108,12 @@ describe('checkTranslations', () => {
     );
   });
 
+  it('when escaped placeholders used no error expected', async () => {
+    await checkTranslations(
+      `${data}/constains-scaped-placeholders`,
+    );
+  });
+
   it('when placeholder found in translation but not in template error expected', async () => {
     try {
       await checkTranslations(`${data}/contains-wrong-placeholder`);
