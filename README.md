@@ -8,7 +8,7 @@ or [messageformat](https://messageformat.github.io/messageformat/) syntax.
 
 Node 8.10+ required. Install with:
 
-    npm install translation-checker
+    npm install @medic/translation-checker
 
 Here is how you can use it:
 
