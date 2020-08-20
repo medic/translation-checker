@@ -102,6 +102,12 @@ describe('checkTranslations', () => {
     );
   });
 
+  it('when {{ var || \'constant\' }} inside placeholder are used no error expected', async () => {
+    await checkTranslations(
+      `${data}/contains-placeholders-with-constants`,
+    );
+  });
+
   it('when placeholder found in translation but not in template error expected', async () => {
     try {
       await checkTranslations(`${data}/contains-wrong-placeholder`);
