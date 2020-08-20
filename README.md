@@ -158,3 +158,8 @@ the software that use the translations fallback
 to the default language, so to disable empties
 check set `options.checkEmpties` to `false`
 (default is `true`).
+
+
+## Publishing
+
+    $ npm publish --access=public
