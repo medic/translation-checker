@@ -1,0 +1,8 @@
+/build/
+/node_modules/
+/.vscode/
+/.idea/
+/.settings/
+/.project
+/.nyc_output
+*.swp
