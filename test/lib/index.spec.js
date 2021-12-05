@@ -108,6 +108,12 @@ describe('checkTranslations', () => {
     );
   });
 
+  it('when {{ var || \'\' }} inside placeholder are used no error expected', async () => {
+    await checkTranslations(
+      `${data}/contains-placeholders-with-empty-constants`
+    );
+  });
+
   it('when escaped placeholders used no error expected', async () => {
     await checkTranslations(
       `${data}/constains-scaped-placeholders`,
