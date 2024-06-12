@@ -80,7 +80,26 @@ describe('checkTranslations', () => {
     );
   });
 
-  it('when empty translation error expected', async () => {
+  it('when missing key but option not provided, defauts to no check', async () => {
+    await checkTranslations(`${data}/contains-missed-key`);
+  });
+
+  it('when missing key error expected', async () => {
+    try {
+      await checkTranslations(`${data}/contains-missed-key`, { checkMissing: true });
+      assert.fail('Expected TranslationException to be thrown.');
+    } catch (e) {
+      expect(e.name).to.be.eq('TranslationException');
+      expect((e.errors || []).length).to.be.eq(1);
+      expect(e.errors[0]).to.deep.include({
+        error: 'missing-key',
+        lang: 'es',
+        key: 'goodbye'
+      });
+    }
+  });
+
+  it('when empty message error expected', async () => {
     try {
       await checkTranslations(`${data}/contains-empty-messages`);
       assert.fail('Expected TranslationException to be thrown.');

@@ -39,6 +39,7 @@ try {
           case 'wrong-placeholder':
             log.error(error.message);
             break;
+          case 'missing-key':
           case 'empty-message':
             // less severe, lets log it with WARN severity instead of ERROR
             log.warn(error.message);
@@ -63,6 +64,17 @@ WARN Empty message found for key 'report.pregnancy.method_lmp' in 'en' translati
 ERROR Cannot compile 'es' translation with key 'Number in month' has placeholders that do not match any in the base translation provided 
 ERROR Cannot compile 'es' translation n.month = '{MONTHS, plural one{1 mes} other{# meses}}' : Expected "," but "o" found.
 ```
+
+## Arguments
+
+`checkTranslations(dir, options)` (async)
+
+- `dir`: the directory to scan
+- `options.languages`: Array of lowercase ISO 639-1 code languages to be checked. Defaults to all valid files found in `dir`.
+- `options.checkPlaceholders`: Whether to check missed placeholders or not. Defaults to `true`.
+- `options.checkMessageformat`: Whether to check wrong Messageformat or not. Defaults to `true`.
+- `options.checkEmpties`: Whether to check empty messages or not. Defaults to `true`.
+- `options.checkMissing`: Whether to ensure all keys in "en" file also exist in other languages. Defaults to `false`.
 
 ## Error details
 
@@ -90,6 +102,8 @@ These are the `error` codes and what they mean:
    in a translation that do not match any in the base translations ('en' or 'ex')
    placeholders
  - **`empty-message`** - empty message found in a translation
+ - **`missing-key`** - a key was found in the English translation file but not
+   found in one of the other languages
 
 ### Placeholders check
 
